@@ -1,5 +1,6 @@
 /*
-In this project I create a simple Droid (robot) that can be activated, charged, and hover above ground. 
+In this project I create a simple Droid (robot) that 
+can be activated, charged, and hover above ground. 
 */
 public class Droid {
   int batteryLevel;
