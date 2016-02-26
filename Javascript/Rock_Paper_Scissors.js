@@ -1,17 +1,47 @@
-var userChoice = prompt("Do you choose rock, paper or scissors?");
+/*
+This is "Rock paper scissors" game. 
+Two players. 
+Each player chooses either rock, paper or scissors. 
 
-var computerChoice = Math.random();
-if (computerChoice < 0.34) {
-	computerChoice = "rock";
-} else if(computerChoice <= 0.67) {
-	computerChoice = "paper";
-} else {
-	computerChoice = "scissors";
-} console.log("Computer: " + computerChoice);
+The possible outcomes:
+Rock destroys scissors.
+Scissors cut paper.
+Paper covers rock.
+
+This code will break the game into 3 phases:
+a. User makes a choice
+b. Computer makes a choice
+c. A compare function will determine who wins
+*/
+var userChoice = "";
+var computerChoice = "";
+
+var getChoices = function(){
+    userChoice = prompt("Do you choose rock, paper or scissors?");
+    userChoice = userChoice.toLowerCase();
+    while(userChoice !== "rock" && userChoice !== "paper" && userChoice !== "scissors") {
+        userChoice = prompt("Only can choose rock, paper or scissors! Choose again!");
+    } console.log("User: " + userChoice);
+    
+    computerChoice = Math.random();
+    if (computerChoice <= 1/3) {
+    	computerChoice = "rock";
+    } else if(computerChoice <= 2/3) {
+    	computerChoice = "paper";
+    } else {
+    	computerChoice = "scissors";
+    } console.log("Computer: " + computerChoice);    
+};
 
 var compare = function(choice1,choice2) {
     if (choice1 === choice2) {
-        return "The result is a tie!";
+        var tie = prompt("The result is a tie! Play again? Y o N? ");
+        if (tie === "Y") {
+            getChoices();
+            compare(userChoice, computerChoice);	//need debug here!!!
+        } else {
+            return "The result is a tie!";
+        }
     } else if (choice1 === "rock") {
         if (choice2 === "scissors") {
             return "rock wins";
@@ -29,4 +59,5 @@ var compare = function(choice1,choice2) {
         return "scissors wins"
     }
 };
+getChoices();
 compare(userChoice, computerChoice);
