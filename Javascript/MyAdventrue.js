@@ -1,5 +1,5 @@
 /*
-A game based on Justin Bieber concert by using javascript.
+The game story based on Justin Bieber concert by using javascript.
 
 */
 
