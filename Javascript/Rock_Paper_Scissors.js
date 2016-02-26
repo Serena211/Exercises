@@ -38,7 +38,7 @@ var compare = function(choice1,choice2) {
         var tie = prompt("The result is a tie! Play again? Y o N? ");
         if (tie === "Y") {
             getChoices();
-            compare(userChoice, computerChoice);	//need debug here!!!
+            compare(userChoice, computerChoice);	
         } else {
             return "The result is a tie!";
         }
@@ -60,4 +60,4 @@ var compare = function(choice1,choice2) {
     }
 };
 getChoices();
-compare(userChoice, computerChoice);
+console.log(compare(userChoice, computerChoice));
