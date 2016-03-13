@@ -1,3 +1,4 @@
+
 var canvas = document.getElementById("clock");
 var ctx = canvas.getContext("2d");
 
@@ -7,7 +8,9 @@ var centrePos = canvas.height / 2;
 ctx.translate(centrePos, centrePos);
 //get the radius of the clock
 radius = centrePos * 0.9;
-drawClock();
+
+//drawClock will be called for each 1000 milliseconds.
+setInterval(drawClock, 1000);
 
 function drawClock() {
     drawFace(ctx, radius);
@@ -38,7 +41,6 @@ function drawFace(ctx, radius) {
     ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
     ctx.fillStyle = "black";
     ctx.fill();
-
 }
 
 function drawNumber(ctx, radius) {
@@ -50,11 +52,13 @@ function drawNumber(ctx, radius) {
     //vertical-align
     ctx.textBaseline="middle";
     ctx.textAlign="center";
+    //draw numbers
     for(num= 1; num < 13; num++){
-        angle = num * 2* Math.PI / 12;  //360 degree = 2*PI*r
+        angle = num * 2* Math.PI / 12;  //360 degree = 2*PI
         //set the position of number
         x = Math.sin(angle)*radius*0.8;
         y = -Math.cos(angle)*radius*0.8;
+        
         ctx.fillText(num, x, y);
     }
 }
@@ -65,13 +69,13 @@ function drawCurrentTime(ctx,radius) {
     var minute = cur.getMinutes();
     var second = cur.getSeconds();
     
-    var oneDegree = 2*Math.PI*radius/60;
+    var oneDegree = 2 * Math.PI / 60;
     var scdPos = second * oneDegree
-    var minPos = minute * oneDegree //+ scdPos/60;
-    var hourPos = hour * 5 * oneDegree //+ minPos/60;
-    //drawHands(ctx, scdPos, radius*0.8, radius*0.05);
+    var minPos = minute * oneDegree + scdPos/60;
+    var hourPos = hour * 5 * oneDegree + minPos/60;
+    drawHands(ctx, scdPos, radius*0.8, radius*0.02);
     drawHands(ctx, minPos, radius*0.7, radius*0.08);
-    drawHands(ctx, hourPos, radius*0.5, radius*0.09);
+    drawHands(ctx, hourPos, radius*0.55, radius*0.09);
 }
 
 function drawHands(ctx, position, length, width) {
@@ -79,7 +83,7 @@ function drawHands(ctx, position, length, width) {
     ctx.lineWidth = width;
     //ctx.lineCap = "round";
     ctx.moveTo(0,0);
-    ctx.lineTo(Math.sin(position)*length, Math.cos(position)*length);
+    ctx.lineTo(Math.sin(position)*length, -Math.cos(position)*length);
     ctx.stroke();
 }
 
