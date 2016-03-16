@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
+% Please Note: Put resume.cls and your.tex in the same folder.
 %
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9,32 +9,35 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass{resume} % Use the custom resume.cls style
+\documentclass{resume} 		% Use the custom resume.cls style
 \usepackage[left=0.7in,top=0.6in,right=0.7in,bottom=0.6in]{geometry} % Document margins
-\setlength{\parindent}{0em}
-\setlength{\parskip}{0.3em}
-\name {Xuanyu(Serena) Liu} % Your name
-\address {200 Hancock Ave, Jersey City, NJ 07307 \hspace{0.5em} Tel: 201-565-6769 \hspace{0.5em} Email:  xliu54@stevens.edu} % Your address
-\address{Github: https://github.com/Serena211 \hspace{0.5em} LinkedIn: https://www.linkedin.com/in/xuanyu-liu-505193b2} % Your github (optional)
+\setlength{\parindent}{0em}	% Determining paragraph indentation
+\setlength{\parskip}{0.3em}	% Determining space between paragraph and preceeding text
+\name {\textsf{Xuanyu(Serena) Liu}} 	% Your name in "sans serif" style
+\address {200 Hancock Ave, Jersey City, NJ 07307 \hspace{0.5em} Tel: 201-565-6769 \hspace{0.5em} Email:  xliu54@stevens.edu} 		% Your address "\hspace" is used to add space within text.
+\address{Github: https://github.com/Serena211 \hspace{0.5em} LinkedIn: https://www.linkedin.com/in/xuanyu-liu-505193b2} 
 \begin{document}
+
 %----------------------------------------------------------------------------------------
 %	OBJECTIVE SECTION
 %----------------------------------------------------------------------------------------
+
 \begin{rSection}{Objective}
 To obtain an intern or full-time position in the field of computer science with special interests in web programming, data analysis, and machine learning.
 \end{rSection}
+
 %----------------------------------------------------------------------------------------
 %	EDUCATION SECTION
 %----------------------------------------------------------------------------------------
 
 \begin{rSection}{Education}
-{\sl Stevens Institute of Technology}, Hoboken, NJ \hfill {\em expected May 2016} \\ 
+{\sl Stevens Institute of Technology}, Hoboken, NJ \hfill {\em expected May 2016} \\ 	% \sl italic; \hfill  right-align; 
 Master of Science: Computer Science {\em GPA: 3.80}\\
 {\sl Beijing University of Technology}, Beijing, China\hfill {\em July 2013} \\ 
 Bachelor of Engineering: Microelectronics	   {\em GPA: 3.30 }
 \begin{itemize} 
- \setlength\itemsep{-0.5em}
- \renewcommand\labelitemi{--}
+ \setlength\itemsep{-0.5em}		% Reduce space between items
+ \renewcommand\labelitemi{--}		% Change the bullet sign to "?"
 \item Recipient of Excellent Student in Academics Scholarship
 \item Top 5\% of grade
 \end{itemize} 
@@ -46,28 +49,28 @@ Bachelor of Engineering: Microelectronics	   {\em GPA: 3.30 }
 
 \begin{rSection}{Academic Projects}
 
-{\sl Compare Four Classifications Performance on Dog Detection} \hfill {\em Jun - Jul 2015} 
-\begin{itemize}   % Reduce space between items
- \setlength\itemsep{-0.5em}
- \renewcommand\labelitemi{--}
-\item Collected features of images by using Histogram of Oriented Gradients (HoG).
-\item Generated the predicted models after gathering the feature descriptors of all train dataset images by using this four classifications: Support Vector Machine (SVM), K­\-Nearest Neighbors (KNN), Naive Bayes (NB), and Decision Trees (DT). 
-\item  
+{\sl Compare Four Classifications Performance on Dog Detection} \hfill {\em Dec 2015} 
+\begin{itemize}   				
+ \setlength\itemsep{-0.5em}		% Reduce space between items
+ \renewcommand\labelitemi{--}		% Change the bullet sign to "?"
+\item Collected features of 4000 images by using Histogram of Oriented Gradients (HoG).
+\item Generated 4 predicted models after gathering the feature descriptors of all train dataset images by using this four classifications: Support Vector Machine (SVM), K­\-Nearest Neighbors (KNN), Naive Bayes (NB), and Decision Trees (DT). 
+\item  Analyzed and enhanced the accuracy of classification by adjusting related parameters.
 \end{itemize}
 %----------------------------------------------------------------------------------------------------------
 {\sl Online Discussion System} \hfill {\em Jun - Jul 2015} 
-\begin{itemize}   % Reduce space between items
- \setlength\itemsep{-0.5em}
- \renewcommand\labelitemi{--}
+\begin{itemize}   				
+ \setlength\itemsep{-0.5em}		% Reduce space between items
+ \renewcommand\labelitemi{--}		% Change the bullet sign to "?"
 \item Used PHP to access MySQL database to store user information.
 \item Enhanced the user experience by applying jQuery, Bootstrap, and AJAX on basic HTML pages. 
 \item Handled basic security problems, such as SQL injections, HTML/Javascript injections, file upload vulnerabilities, and passwords encryption. 
 \end{itemize}
 %------------------------------------------------------------------------------------------------------------------------------
 {\sl Query Processing Engine (Based on Extended Multi-Feature queries)} \hfill {\em Mar - May 2015} 
-\begin{itemize}   % Reduce space between items
- \setlength\itemsep{-0.5em}
- \renewcommand\labelitemi{--}
+\begin{itemize}  
+ \setlength\itemsep{-0.5em}		% Reduce space between items
+ \renewcommand\labelitemi{--}		% Change the bullet sign to "?"
 \item Provided a simple, efficient and scalable algorithm to process multi-dimensional queries.
 \item Given the input (a corresponding relational algebraic expression), the query processing engine generated a
 intermediated program (written in Java) which implemented the evaluation. 
@@ -75,19 +78,19 @@ intermediated program (written in Java) which implemented the evaluation.
  The intermediated program went against the target table stored in the PostgreSQL database and 
  \end{itemize}
 % -------------------------------------------------------------------------------------------------------
- {\sl Face Detection and Tracking in Video } \hfill {\em Jan - May 2015} 
+ {\sl Face Detection and Tracking in Video } \hfill {\em May 2015} 
 \begin{itemize} 
- \setlength\itemsep{-0.5em}
- \renewcommand\labelitemi{--}
+ \setlength\itemsep{-0.5em}		% Reduce space between items
+ \renewcommand\labelitemi{--}		% Change the bullet sign to "?"
 \item Trained a predicted model by using grayscale a face \& noteface large scale dataset.
 \item Detected faces frame by frame by using face color detection (YCrCb color space). 
 \item Marked all the face areas in each frame, and recombined all frames to a new successive video.
 \end{itemize} 
 %------------------------------------------------
-
-
+% add new projects here
 %------------------------------------------------
 \end{rSection}
+
 %----------------------------------------------------------------------------------------
 %	RELEVANT EXPERIENCE
 %----------------------------------------------------------------------------------------
@@ -98,14 +101,15 @@ intermediated program (written in Java) which implemented the evaluation.
 \begin{itemize} 
  \setlength\itemsep{-0.5em}
  \renewcommand\labelitemi{--}
-\item Primarily conducting basic tasks of system testing on a security system.
-\item Tested the system and found 3 bugs in total, twenty of which were level 1 mistake.
-\item Provided solutions to the assigned engineers. 
+\item Primarily conducted basic tasks of system testing on a security system.
+\item Tested the system and found 3 bugs in total, and provided solutions to the assigned engineer. 
 \end{itemize} 
-
+%------------------------------------------------
+% add new experiences here
+%------------------------------------------------
 \end{rSection}
 %----------------------------------------------------------------------------------------
-%	TECHNICAL STRENGTHS SECTION
+%	SKILLS SECTION
 %----------------------------------------------------------------------------------------
 
 \begin{rSection}{Skills}
@@ -118,6 +122,8 @@ Relevant skills & Git, AJAX, Ruby, AngularJS, jQuery, MySQL, PostgreSQL, APIs
 
 \end{rSection}
 
+%----------------------------------------------------------------------------------------
+% add new sections here
 %----------------------------------------------------------------------------------------
 
 \end{document}
