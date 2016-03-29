@@ -1,0 +1,183 @@
+<html>
+<head>
+</head>
+<body>
+    <center>
+        <div style="width:100%; height:80px;">    
+            <p>Please move your mouse! See what happens!</p>
+        </div>
+    </center>
+    <center>
+        <canvas id="myCanvas" width="1400" height="800" style="border:10px; border-style: double;">
+        </canvas>
+    </center>
+
+<script>
+
+function generate_random_position_x(canvas) {
+    return Math.random() * canvas.width;
+}
+
+function generate_random_position_tree(canvas, sky_height) {
+    return Math.random() * (canvas.height - sky_height) + sky_height;
+}
+
+function generate_random_radius_tree() {
+    return (Math.random() + 0.1) * 100;
+}
+
+function generate_random_position_star(sky_height) {
+    return Math.random() * sky_height;
+}
+
+function generate_random_radius_star() {
+    return (Math.random() + 0.05) * 3;
+}
+function draw_a_cloud(centerx, centery, r, ctx) {
+    var img = new Image();
+    img.src = "cloud.png";
+    img.onload = function() {
+        ctx.drawImage(img, 
+                centerx, 
+                centery,
+                20*r, 16*r);
+    }    
+}
+function draw_grass(centerx, centery, r, ctx) {
+    var img = new Image();
+    img.src = "grass.png";
+    img.onload = function() {
+        ctx.drawImage(img, 
+                centerx, 
+                centery,
+                4*r, 1*r);
+    }    
+}
+function draw_cow(centerx, centery, r, ctx) {
+    var img = new Image();
+    img.src = "cow.gif";
+    img.onload = function() {
+        ctx.drawImage(img, 
+                centerx, 
+                centery,
+                68*r, 131*r);
+    }    
+}
+function draw_a_star(centerx, centery, r, ctx) {
+    ctx.strokeStyle = "#FFF380";
+    ctx.fillStyle   = "yellow";
+    
+    ctx.beginPath();
+    
+    ctx.moveTo(centerx-r*0.1,centery-r*0.1);
+    ctx.lineTo(centerx      ,centery-r    );
+    ctx.lineTo(centerx+r*0.1,centery-r*0.1);
+
+    ctx.lineTo(centerx+r    ,centery      );
+    ctx.lineTo(centerx+r*0.1,centery+r*0.1);
+
+    ctx.lineTo(centerx      ,centery+r    );
+    ctx.lineTo(centerx-r*0.1,centery+r*0.1);
+    
+    ctx.lineTo(centerx-r    ,centery      );
+    
+    ctx.closePath();
+    
+    ctx.stroke();
+    ctx.fill();
+}
+
+
+function draw_a_tree(centerx, centery, r, ctx) {
+    ctx.strokeStyle = "#3B3131";
+    ctx.fillStyle   = "#7E3517";
+    ctx.lineWidth   = 5;
+
+    // tree 
+    ctx.fillRect(centerx-r*0.1,centery+r*0.5,r*0.2,r*0.5);
+    //ctx.clearRect(45,45,60,60);
+    ctx.strokeRect(centerx-r*0.1,centery+r*0.5,r*0.2,r*0.5);
+    
+    ctx.strokeStyle = "green";
+    ctx.fillStyle   = "lime";
+
+    // third triangle
+    ctx.beginPath();
+    ctx.moveTo(centerx,centery);
+    ctx.lineTo(centerx-r*1.0,centery+r*0.5);
+    ctx.lineTo(centerx+r*1.0,centery+r*0.5);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+
+    // second triangle
+    ctx.beginPath();
+    ctx.moveTo(centerx,centery-r*0.5);
+    ctx.lineTo(centerx-r*0.75,centery);
+    ctx.lineTo(centerx+r*0.75,centery);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+    
+    // first triangle
+    ctx.beginPath();
+    ctx.moveTo(centerx,centery-r);
+    ctx.lineTo(centerx-r*0.5,centery-r*0.5);
+    ctx.lineTo(centerx+r*0.5,centery-r*0.5);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+}
+    
+function mouseOver(ctx, num) {
+    var sky_height = canvas.height/4;
+
+    ctx.fillStyle   = "#0000A0";
+    ctx.fillRect(0,0  ,canvas.width,sky_height);
+    ctx.fillStyle   = "#808000";
+    ctx.fillRect(0,sky_height,canvas.width,canvas.height - sky_height);
+
+    for (i = 0; i < num; i++) {
+        treex = generate_random_position_x(canvas);
+        treey = generate_random_position_tree(canvas, sky_height);
+        treer = generate_random_radius_tree();
+        starx = generate_random_position_x(canvas);
+        stary = generate_random_position_star(sky_height);
+        starr = generate_random_radius_star();
+        draw_a_tree(treex, treey, treer, ctx);
+        draw_a_star(starx, stary, starr, ctx);
+    }
+}
+    
+function mouseOut(ctx, num) {
+    var sky_height = canvas.height/4;
+
+    ctx.fillStyle   = "#66FFFF";
+    ctx.fillRect(0,0  ,canvas.width,sky_height);
+    ctx.fillStyle   = "#808000";
+    ctx.fillRect(0,sky_height,canvas.width,canvas.height - sky_height);
+    for (i = 0; i < num; i++) {
+                
+        grassx = generate_random_position_x(canvas);
+        grassy = generate_random_position_tree(canvas, sky_height);
+        grassr = generate_random_radius_tree();
+        
+        starx = generate_random_position_x(canvas);
+        stary = generate_random_position_star(sky_height);
+        starr = generate_random_radius_star();
+        
+        draw_grass(grassx,grassy,grassr,ctx);
+        draw_a_cloud(starx, stary, starr, ctx);
+    }
+    draw_cow(3*canvas.width/4,canvas.width/4,1,ctx);
+}
+var canvas = document.getElementById('myCanvas');
+var ctx = canvas.getContext('2d');
+document.getElementById("myCanvas").onmouseover = function() {mouseOver(ctx, 100)};
+document.getElementById("myCanvas").onmouseout = function() {mouseOut(ctx, 100)};
+
+
+</script>
+
+</body>
+</html>
