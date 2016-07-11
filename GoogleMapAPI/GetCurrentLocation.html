@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Get Current Location</title>
+</head>
+
+<body>
+    <!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7ZVfVomicZzV6qk6bykUDD1XES-soC6A">//synchronous
+    </script>
+-->
+    <script>
+        function initialize() {
+            //  var myCenter = new google.maps.LatLng(51.508742,-0.120850)
+            // Define a global variable to store current location
+            var currenLocation;
+            var browserSupportFlag = new Boolean(); // allow to access user's location is true
+            var newyorkcity = new google.maps.LatLng(40.69847032728747, -73.9514422416687) // default location
+
+            // Define a map
+            var mapProp = {
+                //    center:myCenter,
+                zoom: 10,
+                mapTypeControl: true,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                },
+                mapTypeId: google.maps.MapTypeId.ROADMAP // map type
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+            // Define a marker showed on map
+            var marker = new google.maps.Marker({
+                //                position: currenLocation,
+                map: map,
+                animation: google.maps.Animation.DROP,
+            });
+
+            // Get current location by using Geolocation
+            // Try W3C Geolocation (Preferred)
+            if (navigator.geolocation) {
+                browserSupportFlag = true;
+                // if success get the current location
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    currenLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.setCenter(currenLocation); // set map center
+                    marker.setPosition(currenLocation); // set marker
+                }, function() { // fail to get current locaiton
+                    handleNoGeolocation(browserSupportFlag);
+                });
+            }
+            // Browser doesn't support Geolocation
+            else {
+                browserSupportFlag = false;
+                handleNoGeolocation(browserSupportFlag);
+            }
+
+            function handleNoGeolocation(errorFlag) {
+                if (errorFlag == true) {
+                    alert("Geolocation service failed.");
+                    currenLocation = newyorkcity;
+                } else {
+                    alert("Your browser doesn't support geolocation.");
+                    currenLocation = newyorkcity;
+                }
+                map.setCenter(currenLocation);
+                marker.setPosition(currenLocation);
+            }
+//            currenLocation = marker.getPosition();
+//            window.alert(currenLocation);
+
+            // 3 seconds after the center of the map has changed, pan back to the
+            // marker           
+            map.addListener('center_changed', function() {
+                window.setTimeout(function() {
+                    map.panTo(marker.getPosition());
+                }, 3000);
+            });
+        }
+        // google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7ZVfVomicZzV6qk6bykUDD1XES-soC6A&callback=initialize">
+        // asynchronous
+    </script>
+    <div id="googleMap" style="width:500px;height:500px;"></div>
+
+</body>
+
+</html>
